@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 
-// const Contact = require("./models/Contact")
+const Loan = require("./models/Loan")
 
 const PORT = 5000;
 // [
@@ -25,8 +25,6 @@ MongoClient.connect('mongodb+srv://dbUser:Loans$11211!@cluster0.opctt.mongodb.ne
     const db = client.db('SNCO')
     const loansCollection = db.collection('Loans')
 
-    console.log(loansCollection)
-
     app.get('/loans', (req,res)=>{
         db.collection('Loans').find().toArray()
         .then(results => {
@@ -43,14 +41,10 @@ MongoClient.connect('mongodb+srv://dbUser:Loans$11211!@cluster0.opctt.mongodb.ne
     //     })
     // })
 
-    app.post('/contacts', (req, res) => {
-        const contact = new Contact({
-            name: req.body.name,
-            number: req.body.number,
-            address: req.body.address
-        });
+    app.post('/loans', (req, res) => {
+        const loan = new Loan(req.body);
         
-        contactsCollection.insertOne(contact)
+        loansCollection.insertOne(loan)
         .then(result => {
             res.send(result.ops)
         })
@@ -58,17 +52,14 @@ MongoClient.connect('mongodb+srv://dbUser:Loans$11211!@cluster0.opctt.mongodb.ne
 
     })
 
-    app.put('/contacts', (req,res)=>{
+    // app.put('/contacts', (req,res)=>{
+    //     contactsCollection.updateOne({ _id: ObjectId(req.body._id)}, {$set: {name: req.body.name, number: req.body.number, address: req.body.address} })
+    //     res.json(bodyToResp)
+    // })
 
-    //   let bodyToResp={name: req.body.name, number: req.body.number, address: req.body.address, _id: req.body._id}
-
-        contactsCollection.updateOne({ _id: ObjectId(req.body._id)}, {$set: {name: req.body.name, number: req.body.number, address: req.body.address} })
-        res.json(bodyToResp)
-    })
-
-    app.delete('/contacts', (req, res) => {
-        contactsCollection.deleteOne({ _id: ObjectId(req.body._id) })
-    })
+    // app.delete('/contacts', (req, res) => {
+    //     contactsCollection.deleteOne({ _id: ObjectId(req.body._id) })
+    // })
     // .then(result => {
     //     if (result.deletedCount === 0) {
     //       return res.json('No quote to delete')
