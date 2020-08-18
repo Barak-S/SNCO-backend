@@ -1,17 +1,17 @@
 const express = require('express')
 const app = express()
 
-const Loan = require("./models/Loan")
+// const Loan = require("./models/Loan")
 
 const PORT = 5000;
-// [
+
 const bodyParser= require('body-parser')
-// ^^ must be before CRUD handlers
+
 app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(bodyParser.json());
-// ]
+
 var cors = require('cors');
 app.use(cors())
 
