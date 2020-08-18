@@ -42,7 +42,7 @@ MongoClient.connect('mongodb+srv://dbUser:Loans$11211!@cluster0.opctt.mongodb.ne
     // })
 
     app.post('/loans', (req, res) => {
-        const loan = new Loan(req.body);
+        const loan = (req.body);
         
         loansCollection.insertOne(loan)
         .then(result => {
