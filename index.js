@@ -46,7 +46,7 @@ MongoClient.connect('mongodb+srv://dbUser:Loans$11211!@cluster0.opctt.mongodb.ne
         
         loansCollection.insertOne(loan)
         .then(result => {
-            res.send(result.ops)
+            res.json(result.ops)
         })
         .catch(error => console.error(error))
 
