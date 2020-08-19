@@ -26,7 +26,7 @@ MongoClient.connect('mongodb+srv://dbUser:Loans$11211!@cluster0.opctt.mongodb.ne
     const loansCollection = db.collection('Loans')
 
     app.get('/loans', (req,res)=>{
-        db.collection('Loans').find().toArray()
+        loansCollection.find().toArray()
         .then(results => {
             res.json(results)
         })
@@ -34,12 +34,11 @@ MongoClient.connect('mongodb+srv://dbUser:Loans$11211!@cluster0.opctt.mongodb.ne
     
     })
 
-    // app.get('/contacts/:id', (req,res)=>{
-    //     Contact.findById(req.params.id, (err, contact) => {
-    //         if (err) throw err;
-    //         res.json({ contact });
-    //     })
-    // })
+    app.get('/loans/:id', (req,res)=>{
+        let loan = loansCollection.findOne({ _id: ObjectId(req.params._id) })
+        console.log(loan)
+        // res.send(loan)
+    })
 
     app.post('/loans', (req, res) => {
         const loan = (req.body);
