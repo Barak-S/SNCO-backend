@@ -31,13 +31,14 @@ MongoClient.connect('mongodb+srv://dbUser:Loans$11211!@cluster0.opctt.mongodb.ne
             res.json(results)
         })
         .catch(error => console.error(error))
-    
     })
 
     app.get('/loans/:id', (req,res)=>{
-        let loan = loansCollection.findOne({ _id: ObjectId(req.params._id) })
-        console.log(loan)
-        // res.send(loan)
+        loansCollection.findOne({ _id: ObjectId(req.params.id) })
+        .then(data=> {
+            res.json(data)
+        })
+        .catch(error => console.error(error))
     })
 
     app.post('/loans', (req, res) => {
