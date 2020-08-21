@@ -1,9 +1,11 @@
 const express = require('express')
 const app = express()
-
+require('dotenv').config()
 // const Loan = require("./models/Loan")
+var mongoose = require('mongoose');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/snco-calculator-backend');
 
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 const bodyParser= require('body-parser')
 
