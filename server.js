@@ -1,8 +1,10 @@
 const express = require('express')
 const app = express()
+
 require('dotenv').config()
-// const Loan = require("./models/Loan")
+
 var mongoose = require('mongoose');
+
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/snco-calculator-backend');
 
 const PORT = process.env.PORT || 5000;
@@ -59,14 +61,15 @@ MongoClient.connect('mongodb+srv://dbUser:Loans$11211!@cluster0.opctt.mongodb.ne
     //     res.json(bodyToResp)
     // })
 
-    // app.delete('/contacts', (req, res) => {
-    //     contactsCollection.deleteOne({ _id: ObjectId(req.body._id) })
-    // })
+    app.delete('/loans', (req, res) => {
+        // loansCollection.deleteOne({ _id: ObjectId(req.body.id) })
+        console.log(req.body.id)
+    })
     // .then(result => {
     //     if (result.deletedCount === 0) {
-    //       return res.json('No quote to delete')
+    //       return res.json('No Loan to Delete')
     //     }
-    //     res.json(`Deleted Darth Vadar's quote`)
+    //     res.json(`Deleted Loan`)
     // })
     // .catch(error => console.error(error))
 
