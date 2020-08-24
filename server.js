@@ -62,16 +62,16 @@ MongoClient.connect('mongodb+srv://dbUser:Loans$11211!@cluster0.opctt.mongodb.ne
     // })
 
     app.delete('/loans', (req, res) => {
-        // loansCollection.deleteOne({ _id: ObjectId(req.body.id) })
-        console.log(req.body.id)
+        loansCollection.deleteOne({ _id: ObjectId(req.body.id) })
+        // console.log(req.body.id)
     })
-    // .then(result => {
-    //     if (result.deletedCount === 0) {
-    //       return res.json('No Loan to Delete')
-    //     }
-    //     res.json(`Deleted Loan`)
-    // })
-    // .catch(error => console.error(error))
+    .then(result => {
+        if (result.deletedCount === 0) {
+          return res.json('No Loan to Delete')
+        }
+        res.json('Deleted Loan')
+    })
+    .catch(error => console.error(error))
 
   })
   .catch(error => console.error(error))
