@@ -56,22 +56,21 @@ MongoClient.connect('mongodb+srv://dbUser:Loans$11211!@cluster0.opctt.mongodb.ne
 
     })
 
-    // app.put('/contacts', (req,res)=>{
-    //     contactsCollection.updateOne({ _id: ObjectId(req.body._id)}, {$set: {name: req.body.name, number: req.body.number, address: req.body.address} })
-    //     res.json(bodyToResp)
-    // })
+    app.put('/loans', (req,res)=>{
+        loansCollection.updateOne({ _id: ObjectId(req.body.id)}, {$set: {name: req.body.name, number: req.body.number, address: req.body.address} })
+        res.json(bodyToResp)
+    })
 
     app.delete('/loans', (req, res) => {
         loansCollection.deleteOne({ _id: ObjectId(req.body.id) })
-        // console.log(req.body.id)
     })
-    .then(result => {
-        if (result.deletedCount === 0) {
-          return res.json('No Loan to Delete')
-        }
-        res.json('Deleted Loan')
-    })
-    .catch(error => console.error(error))
+    // .then(result => {
+    //     if (result.deletedCount === 0) {
+    //       return res.json('No Loan to Delete')
+    //     }
+    //     res.json('Deleted Loan')
+    // })
+    // .catch(error => console.error(error))
 
   })
   .catch(error => console.error(error))
