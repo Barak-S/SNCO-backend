@@ -57,12 +57,16 @@ MongoClient.connect('mongodb+srv://dbUser:Loans$11211!@cluster0.opctt.mongodb.ne
     })
 
     app.put('/loans/:id', (req,res)=>{
-        // loansCollection.updateOne({ _id: ObjectId(req.body.id)}, {$set: {name: req.body.name, number: req.body.number, address: req.body.address} })
-        // res.json(bodyToResp)
         const loan = req.body.loan
         loansCollection.updateOne({ _id: ObjectId(req.body.id) }, {$set: {loan: req.body.loan} })
-        console.log(loan)
+        .then((obj) => {
+           res.send('Updated loan successfully!')
+        })
+        .catch((err) => {
+            res.log("couldn't update loan");
+        }) 
     })
+
 
     app.delete('/loans', (req, res) => {
         loansCollection.deleteOne({ _id: ObjectId(req.body.id) })
