@@ -59,7 +59,7 @@ MongoClient.connect('mongodb+srv://dbUser:Loans$11211!@cluster0.opctt.mongodb.ne
         const loan = req.body.loan
         loansCollection.updateOne({ _id: ObjectId(req.body.id) }, {$set: {loan: req.body.loan} })
         .then(result => {
-            res.json(result.ops)
+            res.send(result)
         })
         .catch(error => console.error(error))
     })
