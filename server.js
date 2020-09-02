@@ -65,7 +65,7 @@ MongoClient.connect('mongodb+srv://dbUser:Loans$11211!@cluster0.opctt.mongodb.ne
     })
 
 
-    app.delete('/loans', (req, res) => {
+    app.delete('/loans/delete', (req, res) => {
         loansCollection.deleteOne({ _id: ObjectId(req.body.id) })
     })
 
