@@ -17,7 +17,7 @@ const LoanSchema = mongoose.Schema({
         type: Number,
         required: true
     },
-    emial:{
+    email:{
         type: String,
         required: true 
     },
